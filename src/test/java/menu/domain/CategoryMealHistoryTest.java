@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 class CategoryMealHistoryTest {
-    CategoryMealHistory categoryMealHistory = new CategoryMealHistory();
+    RecommendCategoryInfo categoryMealHistory = new RecommendCategoryInfo();
     @ParameterizedTest
     @MethodSource("generateCategoryData")
     void 같은_카테고리는_최대_두_번만_가능하다(CategoryMenu category, boolean result) {

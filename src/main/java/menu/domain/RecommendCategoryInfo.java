@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
-public class CategoryMealHistory {
+public class RecommendCategoryInfo {
     private final EnumMap<CategoryMenu, Integer> categoryHistory = new EnumMap<>(CategoryMenu.class);
     private final List<CategoryMenu> dayRecommendedCategoryInfo = new ArrayList<>();
 
