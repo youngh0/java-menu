@@ -1,6 +1,6 @@
 package menu.service;
 
-import menu.domain.CategoryMealHistory;
+import menu.domain.RecommendCategoryInfo;
 import menu.domain.CategoryMenu;
 import menu.domain.CoachInfo;
 import menu.domain.CoachMenuRecommendInfo;
@@ -9,8 +9,8 @@ import menu.util.CategorySelector;
 import java.util.List;
 
 public class MenuService {
-    private final CategoryMealHistory categoryMealHistory = new CategoryMealHistory();
-    private final CoachMenuRecommendInfo coachMealHistory = new CoachMenuRecommendInfo();
+    private final RecommendCategoryInfo recommendedCategoryInfo = new RecommendCategoryInfo();
+    private final CoachMenuRecommendInfo coachMenuRecommendInfo = new CoachMenuRecommendInfo();
     private final CategorySelector categorySelector = new CategorySelector();
 
     private final int DAY_COUNT = 5;
@@ -21,23 +21,23 @@ public class MenuService {
             CategoryMenu category = pickPossibleCategory();
             for (String coachName : coachInfo.getCoachNames()) {
                 String menu = pickPossibleMenu(category, coachName, coachInfo);
-                coachMealHistory.recommendMenu(coachName, menu);
+                coachMenuRecommendInfo.recommendMenu(coachName, menu);
             }
-            categoryMealHistory.saveCategoryInfoPerDay(category);
+            recommendedCategoryInfo.saveCategoryInfoPerDay(category);
         }
     }
 
     public List<CategoryMenu> getRecommendedCategoryPerDay() {
-        return categoryMealHistory.getCategoryRecommendedInfo();
+        return recommendedCategoryInfo.getCategoryRecommendedInfo();
     }
 
     public List<String> getRecommendedMenus(String coachName) {
-        return coachMealHistory.getRecommendedMenuPerCoach(coachName);
+        return coachMenuRecommendInfo.getRecommendedMenuPerCoach(coachName);
     }
 
     private CategoryMenu pickPossibleCategory() {
         CategoryMenu category = findPossibleCategory();
-        if (categoryMealHistory.isPossibleCategory(category)) {
+        if (recommendedCategoryInfo.isPossibleCategory(category)) {
             return category;
         }
         return pickPossibleCategory();
@@ -45,7 +45,7 @@ public class MenuService {
 
     private CategoryMenu findPossibleCategory() {
         CategoryMenu category = categorySelector.pickCategory();
-        if (categoryMealHistory.isPossibleCategory(category)) {
+        if (recommendedCategoryInfo.isPossibleCategory(category)) {
             return category;
         }
         return findPossibleCategory();
@@ -53,7 +53,7 @@ public class MenuService {
 
     private String pickPossibleMenu(CategoryMenu category, String coachName, CoachInfo coachInfo) {
         String menu = categorySelector.pickMenu(category);
-        if (coachMealHistory.isPossibleMenu(coachName, menu) && !coachInfo.isForbiddenMenu(coachName,menu)) {
+        if (coachMenuRecommendInfo.isPossibleMenu(coachName, menu) && !coachInfo.isForbiddenMenu(coachName,menu)) {
             return menu;
         }
         return pickPossibleMenu(category, coachName, coachInfo);

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CoachInfo {
-    private Map<String, List<String>> coachNeverEatingMenus;
+    private final Map<String, List<String>> coachForbiddenMenus;
     private final List<String> coachNames;
 
     private final int MIN_NAME_LENGTH = 2;
@@ -20,7 +20,7 @@ public class CoachInfo {
     public CoachInfo(List<String> coachNames) {
         validate(coachNames);
         this.coachNames = coachNames;
-        coachNeverEatingMenus = new HashMap<>();
+        coachForbiddenMenus = new HashMap<>();
     }
 
     public void initForbiddenFood(String coachName, List<String> menus) {
@@ -28,7 +28,7 @@ public class CoachInfo {
         for (String menu : menus) {
             CategoryMenu.validateMenuName(menu);
         }
-        coachNeverEatingMenus.put(coachName, menus);
+        coachForbiddenMenus.put(coachName, menus);
     }
 
     public List<String> getCoachNames() {
@@ -36,7 +36,7 @@ public class CoachInfo {
     }
 
     public boolean isForbiddenMenu(String coachName, String menu) {
-        return coachNeverEatingMenus.get(coachName).contains(menu);
+        return coachForbiddenMenus.get(coachName).contains(menu);
     }
 
     private void validate(List<String> coachNames) {
