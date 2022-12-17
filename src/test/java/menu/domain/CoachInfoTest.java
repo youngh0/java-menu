@@ -11,16 +11,30 @@ import java.util.stream.Stream;
 
 class CoachInfoTest {
     @ParameterizedTest
-    @MethodSource("generateData")
+    @MethodSource("generateWrongNameLengthData")
     void 코치_이름_길이_유효성_테스트(List<String> names) {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CoachInfo(names));
     }
 
-    static Stream<Arguments> generateData() {
+    @ParameterizedTest
+    @MethodSource("generateWrongCoachNumberData")
+    void 코치_인원_유효성_테스트(List<String> coachInfo) {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CoachInfo(coachInfo));
+    }
+
+    static Stream<Arguments> generateWrongNameLengthData() {
         return Stream.of(
                 Arguments.of(Arrays.asList("ab", "ba", "c")),
                 Arguments.of(Arrays.asList("xa", "ya", "zqwer"))
+        );
+    }
+
+    static Stream<Arguments> generateWrongCoachNumberData() {
+        return Stream.of(
+                Arguments.of(Arrays.asList("ab", "ba", "cr","ewr","qet","qert")),
+                Arguments.of(List.of("xa"))
         );
     }
 }
