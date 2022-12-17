@@ -21,4 +21,8 @@ public class CoachMealHistory {
         }
         coachMealHistory.put(coachName, new ArrayList<>(List.of(menu)));
     }
+
+    public List<String> getRecommendedMenuPerCoach(String coachName) {
+        return new ArrayList<>(coachMealHistory.get(coachName));
+    }
 }
