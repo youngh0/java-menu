@@ -25,6 +25,7 @@ public class CoachInfo {
 
     public void initForbiddenFood(String coachName, List<String> menus) {
         validateForbiddenFoodCount(menus);
+        validateDuplicationForbiddenFood(menus);
         for (String menu : menus) {
             CategoryMenu.validateMenuName(menu);
         }
@@ -68,6 +69,12 @@ public class CoachInfo {
     private void validateForbiddenFoodCount(List<String> menus) {
         if (menus.size() > MAX_FORBIDDEN_MENU_COUNT) {
             throw new IllegalArgumentException(" 못 먹는 음식은 최대 2개까지 가능합니다.");
+        }
+    }
+
+    private void validateDuplicationForbiddenFood(List<String> menus) {
+        if (menus.size() != new HashSet<>(menus).size()) {
+            throw new IllegalArgumentException(" 못 먹는 음식 간 중복이 있습니다.");
         }
     }
 }
