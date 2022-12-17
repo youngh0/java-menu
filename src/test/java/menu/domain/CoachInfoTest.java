@@ -1,6 +1,7 @@
 package menu.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,7 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+@DisplayName("코치들 정보(이름, 못 먹는 음식) 테스트")
 class CoachInfoTest {
+
     @ParameterizedTest
     @MethodSource("generateWrongNameLengthData")
     void 코치_이름_길이_유효성_테스트(List<String> names) {
@@ -25,6 +28,12 @@ class CoachInfoTest {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new CoachInfo(coachInfo));
     }
+    @Test
+    void 코치들의_이름은_중복_안된다() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CoachInfo(List.of("토미", "토미", "포코")));
+    }
+
 
     @ParameterizedTest
     @CsvSource(value = {"토미,우동,true","포코,스시,false","제임스,우동,false"})
@@ -38,11 +47,7 @@ class CoachInfoTest {
                 .isEqualTo(result);
     }
 
-    @Test
-    void 코치들의_이름은_중복_안된다() {
-        Assertions.assertThrows(IllegalArgumentException.class,
-                () -> new CoachInfo(List.of("토미", "토미", "포코")));
-    }
+
 
     static Stream<Arguments> generateWrongNameLengthData() {
         return Stream.of(
