@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import menu.domain.CoachInfo;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class InputView {
@@ -18,7 +17,7 @@ public class InputView {
     public List<String> readForbiddenMenu() {
         String menus = Console.readLine();
         if (menus.equals("")) {
-            return Collections.emptyList();
+            return List.of();
         }
         return Arrays.asList(menus.split(","));
     }
