@@ -28,7 +28,7 @@ public class MenuController {
         try {
             return inputView.readCoachNames();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            outputView.printErrorMessage(e.getMessage());
             return settingCoachName();
         }
     }
@@ -38,7 +38,7 @@ public class MenuController {
             outputView.printSetForbiddenMenu(coachName);
             coachInfo.initForbiddenFood(coachName, inputView.readForbiddenMenu());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]");
+            outputView.printErrorMessage(e.getMessage());
             settingForbiddenFood(coachInfo, coachName);
         }
     }

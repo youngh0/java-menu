@@ -10,6 +10,7 @@ public class OutputView {
     private final String FORBIDDEN_MESSAGE = "%s(이)가 못 먹는 메뉴를 입력해 주세요.";
     private final String RESULT_START_MESSAGE = "메뉴 추천 결과입니다.";
     private final String RESULT_LAST_MESSAGE = "추천을 완료했습니다.";
+    private final String BASE_ERROR_MESSAGE = "[ERROR] ";
     public void printStartMessage() {
         System.out.println(START_MESSAGE);
     }
@@ -32,6 +33,10 @@ public class OutputView {
         }
         System.out.println(messageFormat);
         System.out.println(RESULT_LAST_MESSAGE);
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(BASE_ERROR_MESSAGE + errorMessage);
     }
 
     private void makeDayMessage() {
