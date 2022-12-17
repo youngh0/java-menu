@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public enum CategoryMenu {
                 .filter(categoryMenu -> categoryMenu.categoryNumber == number)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리 번호 입니다."));
+    }
+
+    public static List<String> getMenus(CategoryMenu categoryMenu) {
+        return new ArrayList<>(categoryMenu.menus);
     }
 }
 //일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
