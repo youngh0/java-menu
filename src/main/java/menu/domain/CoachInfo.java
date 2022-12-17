@@ -27,15 +27,19 @@ public class CoachInfo {
         coachNeverEatingMenus.put(coachName, menus);
     }
 
+    public List<String> getCoachNames() {
+        return coachNames;
+    }
+
+    public boolean isForbiddenMenu(String coachName, String menu) {
+        return coachNeverEatingMenus.get(coachName).contains(menu);
+    }
+
     private void validate(List<String> coachNames) {
         validateCoachNumber(coachNames);
         for (String coachName : coachNames) {
             validateNameLength(coachName);
         }
-    }
-
-    public List<String> getCoachNames() {
-        return coachNames;
     }
 
     private void validateNameLength(String coachName) {
