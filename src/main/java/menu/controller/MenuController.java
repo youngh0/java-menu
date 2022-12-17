@@ -1,23 +1,27 @@
 package menu.controller;
 
 import menu.domain.CoachInfo;
+import menu.service.MenuService;
 import menu.view.InputView;
 import menu.view.OutputView;
 
 public class MenuController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final MenuService menuService = new MenuService();
     public void run() {
-        settingInfo();
+        CoachInfo coachInfo = settingInfo();
+        menuService.recommendMenu(coachInfo);
+        finishRecommendMenu(coachInfo);
     }
 
-    private void settingInfo() {
+    private CoachInfo settingInfo() {
         outputView.printStartMessage();
         CoachInfo coachInfo = settingCoachName();
         for (String coachName : coachInfo.getCoachNames()) {
-
             settingForbiddenFood(coachInfo, coachName);
         }
+        return coachInfo;
     }
 
     private CoachInfo settingCoachName() {
@@ -36,6 +40,13 @@ public class MenuController {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]");
             settingForbiddenFood(coachInfo, coachName);
+        }
+    }
+
+    private void finishRecommendMenu(CoachInfo coachInfo) {
+        outputView.printRecommendCategory(menuService.getRecommendedCategoryPerDay());
+        for (String coachName : coachInfo.getCoachNames()) {
+            outputView.printRecommendedFood(menuService.getRecommendedMenus(coachName), coachName);
         }
     }
 }
