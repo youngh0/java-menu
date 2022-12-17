@@ -1,6 +1,7 @@
 package menu.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -35,6 +36,12 @@ class CoachInfoTest {
 
         org.assertj.core.api.Assertions.assertThat(coachInfo.isForbiddenMenu(name, menu))
                 .isEqualTo(result);
+    }
+
+    @Test
+    void 코치들의_이름은_중복_안된다() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> new CoachInfo(List.of("토미", "토미", "포코")));
     }
 
     static Stream<Arguments> generateWrongNameLengthData() {
