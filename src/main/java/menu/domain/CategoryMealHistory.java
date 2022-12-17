@@ -8,9 +8,11 @@ public class CategoryMealHistory {
     private final EnumMap<CategoryMenu, Integer> categoryHistory = new EnumMap<>(CategoryMenu.class);
     private final List<CategoryMenu> dayRecommendedCategoryInfo = new ArrayList<>();
 
+    private final int MAX_CATEGORY_MEAL_COUNT = 2;
+
     public boolean isPossibleCategory(CategoryMenu category) {
         Integer mealCount = categoryHistory.getOrDefault(category, 0);
-        return mealCount < 2;
+        return mealCount < MAX_CATEGORY_MEAL_COUNT;
     }
 
     public void mealCategory(CategoryMenu categoryMenu) {
