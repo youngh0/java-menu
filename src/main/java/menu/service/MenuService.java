@@ -19,6 +19,7 @@ public class MenuService {
                 String menu = pickPossibleMenu(category, coachName, coachInfo);
                 coachMealHistory.mealMenu(coachName, menu);
             }
+            categoryMealHistory.saveCategoryInfoPerDay(category);
         }
     }
 
