@@ -38,6 +38,10 @@ public enum CategoryMenu {
     public static List<String> getMenus(CategoryMenu categoryMenu) {
         return new ArrayList<>(categoryMenu.menus);
     }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
 }
 //일식: 규동, 우동, 미소시루, 스시, 가츠동, 오니기리, 하이라이스, 라멘, 오코노미야끼
 //한식: 김밥, 김치찌개, 쌈밥, 된장찌개, 비빔밥, 칼국수, 불고기, 떡볶이, 제육볶음
