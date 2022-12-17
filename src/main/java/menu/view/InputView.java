@@ -3,6 +3,7 @@ package menu.view;
 import camp.nextstep.edu.missionutils.Console;
 import menu.domain.CoachInfo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class InputView {
     public List<String> readForbiddenMenu() {
         String menus = Console.readLine();
         if (menus.equals("")) {
-            return List.of();
+            return new ArrayList<>();
         }
         return Arrays.asList(menus.split(","));
     }
