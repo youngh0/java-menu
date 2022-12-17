@@ -13,13 +13,15 @@ public class MenuService {
     private final CoachMealHistory coachMealHistory = new CoachMealHistory();
     private final CategorySelector categorySelector = new CategorySelector();
 
+    private final int DAY_COUNT = 5;
+
     public void recommendMenu(CoachInfo coachInfo) {
-        int oneWeek = 5;
+        int oneWeek = DAY_COUNT;
         while (oneWeek-- > 0) {
             CategoryMenu category = pickPossibleCategory();
             for (String coachName : coachInfo.getCoachNames()) {
                 String menu = pickPossibleMenu(category, coachName, coachInfo);
-                coachMealHistory.mealMenu(coachName, menu);
+                coachMealHistory.recommendMenu(coachName, menu);
             }
             categoryMealHistory.saveCategoryInfoPerDay(category);
         }
@@ -33,20 +35,20 @@ public class MenuService {
         return coachMealHistory.getRecommendedMenuPerCoach(coachName);
     }
 
-    private CategoryMenu findPossibleCategory() {
-        CategoryMenu category = categorySelector.pickCategory();
-        if (categoryMealHistory.isPossibleCategory(category)) {
-            return category;
-        }
-        return findPossibleCategory();
-    }
-
     private CategoryMenu pickPossibleCategory() {
         CategoryMenu category = findPossibleCategory();
         if (categoryMealHistory.isPossibleCategory(category)) {
             return category;
         }
         return pickPossibleCategory();
+    }
+
+    private CategoryMenu findPossibleCategory() {
+        CategoryMenu category = categorySelector.pickCategory();
+        if (categoryMealHistory.isPossibleCategory(category)) {
+            return category;
+        }
+        return findPossibleCategory();
     }
 
     private String pickPossibleMenu(CategoryMenu category, String coachName, CoachInfo coachInfo) {

@@ -12,7 +12,7 @@ class CoachMealHistoryTest {
     @ParameterizedTest
     @CsvSource(value = {"영호,밥,false","영호,국,true"})
     void isPossibleMenu(String name, String menu, boolean result) {
-        coachMealHistory.mealMenu("영호","밥");
+        coachMealHistory.recommendMenu("영호","밥");
         Assertions.assertThat(coachMealHistory.isPossibleMenu(name, menu)).isEqualTo(result);
     }
 }

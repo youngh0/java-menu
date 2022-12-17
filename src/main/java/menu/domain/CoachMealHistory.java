@@ -13,7 +13,7 @@ public class CoachMealHistory {
         return true;
     }
 
-    public void mealMenu(String coachName, String menu) {
+    public void recommendMenu(String coachName, String menu) {
         if (coachMealHistory.containsKey(coachName)) {
             List<String> menuHistory = coachMealHistory.get(coachName);
             menuHistory.add(menu);
