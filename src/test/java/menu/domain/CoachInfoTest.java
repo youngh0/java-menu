@@ -34,6 +34,12 @@ class CoachInfoTest {
                 () -> new CoachInfo(List.of("토미", "토미", "포코")));
     }
 
+    @Test
+    void 못_먹는_음식은_최대_2개() {
+        CoachInfo coachInfo = new CoachInfo(List.of("토미", "제임스", "포코"));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> coachInfo.initForbiddenFood("토미", List.of("우동", "스시", "규동")));
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"토미,우동,true","포코,스시,false","제임스,우동,false"})
