@@ -8,7 +8,7 @@ import java.util.List;
 class CategoryMenuTest {
 
     @Test
-    void validateMenuName() {
+    void 메뉴는_카테고리에_존재하는_메뉴만_가능하다() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> CategoryMenu.validateMenuName("바나나"));
     }

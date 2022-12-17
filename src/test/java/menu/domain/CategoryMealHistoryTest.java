@@ -11,7 +11,7 @@ class CategoryMealHistoryTest {
     CategoryMealHistory categoryMealHistory = new CategoryMealHistory();
     @ParameterizedTest
     @MethodSource("generateCategoryData")
-    void isPossibleCategory(CategoryMenu category, boolean result) {
+    void 같은_카테고리는_최대_두_번만_가능하다(CategoryMenu category, boolean result) {
         categoryMealHistory.mealCategory(CategoryMenu.KOREA_FOOD);
         categoryMealHistory.mealCategory(CategoryMenu.KOREA_FOOD);
         Assertions.assertThat(categoryMealHistory.isPossibleCategory(category)).isEqualTo(result);
