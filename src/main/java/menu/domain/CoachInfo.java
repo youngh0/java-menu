@@ -1,6 +1,7 @@
 package menu.domain;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ public class CoachInfo {
         for (String coachName : coachNames) {
             validateNameLength(coachName);
         }
+        validateDuplicateName(coachNames);
     }
 
     private void validateNameLength(String coachName) {
@@ -50,6 +52,12 @@ public class CoachInfo {
     private void validateCoachNumber(List<String> coachNames) {
         if (coachNames.size() < MIN_COACH_NUMBER || coachNames.size() > MAX_COACH_NUMBER) {
             throw new IllegalArgumentException(" 코치는 2~5명 사이만 가능합니다.");
+        }
+    }
+
+    private void validateDuplicateName(List<String> coachNames) {
+        if (new HashSet<>(coachNames).size() != coachNames.size()) {
+            throw new IllegalArgumentException(" 코치 이름은 중복될 수 없습니다.");
         }
     }
 }
