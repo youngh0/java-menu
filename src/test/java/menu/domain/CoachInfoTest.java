@@ -41,6 +41,13 @@ class CoachInfoTest {
                 () -> coachInfo.initForbiddenFood("토미", List.of("우동", "스시", "규동")));
     }
 
+    @Test
+    void 못_먹는_음식_간_중복_금지() {
+        CoachInfo coachInfo = new CoachInfo(List.of("토미", "제임스", "포코"));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> coachInfo.initForbiddenFood("토미", List.of("우동", "우동")));
+    }
+
     @ParameterizedTest
     @CsvSource(value = {"토미,우동,true","포코,스시,false","제임스,우동,false"})
     void 코치_못_먹는_음식인지_판단_테스트(String name, String menu, boolean result) {
