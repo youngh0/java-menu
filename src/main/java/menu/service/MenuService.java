@@ -6,6 +6,8 @@ import menu.domain.CoachInfo;
 import menu.domain.CoachMealHistory;
 import menu.util.CategorySelector;
 
+import java.util.List;
+
 public class MenuService {
     private final CategoryMealHistory categoryMealHistory = new CategoryMealHistory();
     private final CoachMealHistory coachMealHistory = new CoachMealHistory();
@@ -21,6 +23,14 @@ public class MenuService {
             }
             categoryMealHistory.saveCategoryInfoPerDay(category);
         }
+    }
+
+    public List<CategoryMenu> getRecommendedCategoryPerDay() {
+        return categoryMealHistory.getCategoryRecommendedInfo();
+    }
+
+    public List<String> getRecommendedMenus(String coachName) {
+        return coachMealHistory.getRecommendedMenuPerCoach(coachName);
     }
 
     private CategoryMenu findPossibleCategory() {
