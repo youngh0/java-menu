@@ -34,6 +34,10 @@ public class CoachInfo {
         }
     }
 
+    public List<String> getCoachNames() {
+        return coachNames;
+    }
+
     private void validateNameLength(String coachName) {
         if (coachName.length() < MIN_NAME_LENGTH || coachName.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름의 길이가 허용 범위 밖입니다.");
