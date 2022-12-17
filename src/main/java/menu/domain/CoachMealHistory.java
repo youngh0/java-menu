@@ -1,8 +1,6 @@
 package menu.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CoachMealHistory {
     private final Map<String, List<String>> coachMealHistory = new HashMap<>();
@@ -19,7 +17,8 @@ public class CoachMealHistory {
         if (coachMealHistory.containsKey(coachName)) {
             List<String> menuHistory = coachMealHistory.get(coachName);
             menuHistory.add(menu);
+            return;
         }
-        coachMealHistory.put(coachName, List.of(menu));
+        coachMealHistory.put(coachName, new ArrayList<>(List.of(menu)));
     }
 }
