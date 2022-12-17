@@ -1,13 +1,15 @@
 package menu.domain;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-class CategoryMealHistoryTest {
+@DisplayName("추천된 카테고리 관련 테스트")
+class RecommendCategoryInfoTest {
     RecommendCategoryInfo categoryMealHistory = new RecommendCategoryInfo();
     @ParameterizedTest
     @MethodSource("generateCategoryData")

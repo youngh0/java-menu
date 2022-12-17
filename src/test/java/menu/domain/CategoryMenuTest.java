@@ -1,10 +1,12 @@
 package menu.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+@DisplayName("카테고리, 카테고리에 해당하는 메뉴 정보가 있는 enum테스트")
 class CategoryMenuTest {
 
     @Test
