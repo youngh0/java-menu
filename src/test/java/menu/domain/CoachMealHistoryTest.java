@@ -1,14 +1,11 @@
 package menu.domain;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CoachMealHistoryTest {
-    CoachMealHistory coachMealHistory = new CoachMealHistory();
+    CoachMenuRecommendInfo coachMealHistory = new CoachMenuRecommendInfo();
     @ParameterizedTest
     @CsvSource(value = {"영호,밥,false","영호,국,true"})
     void isPossibleMenu(String name, String menu, boolean result) {

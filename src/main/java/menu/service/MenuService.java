@@ -3,14 +3,14 @@ package menu.service;
 import menu.domain.CategoryMealHistory;
 import menu.domain.CategoryMenu;
 import menu.domain.CoachInfo;
-import menu.domain.CoachMealHistory;
+import menu.domain.CoachMenuRecommendInfo;
 import menu.util.CategorySelector;
 
 import java.util.List;
 
 public class MenuService {
     private final CategoryMealHistory categoryMealHistory = new CategoryMealHistory();
-    private final CoachMealHistory coachMealHistory = new CoachMealHistory();
+    private final CoachMenuRecommendInfo coachMealHistory = new CoachMenuRecommendInfo();
     private final CategorySelector categorySelector = new CategorySelector();
 
     private final int DAY_COUNT = 5;

@@ -2,7 +2,7 @@ package menu.domain;
 
 import java.util.*;
 
-public class CoachMealHistory {
+public class CoachMenuRecommendInfo {
     private final Map<String, List<String>> coachMealHistory = new HashMap<>();
 
     public boolean isPossibleMenu(String coachName, String menu) {
