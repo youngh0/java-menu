@@ -24,6 +24,7 @@ public class MenuService {
                 coachMenuRecommendInfo.recommendMenu(coachName, menu);
             }
             recommendedCategoryInfo.saveCategoryInfoPerDay(category);
+            recommendedCategoryInfo.mealCategory(category);
         }
     }
 
